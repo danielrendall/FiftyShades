@@ -43,4 +43,12 @@ public class SimpleShadeInterpolator implements ColorSupplier {
     public int getNumberOfColors() {
         return numberOfShades;
     }
+
+    public Color getStartColor() {
+        return startColor;
+    }
+
+    public Color getEndColor() {
+        return endColor;
+    }
 }

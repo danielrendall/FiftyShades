@@ -9,4 +9,6 @@ public interface ColorSupplier {
 
     public int getNumberOfColors();
     public Color getColor(int index);
+    public Color getStartColor();
+    public Color getEndColor();
 }
