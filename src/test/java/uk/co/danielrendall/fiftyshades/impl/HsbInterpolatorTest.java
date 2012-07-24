@@ -122,4 +122,68 @@ public class HsbInterpolatorTest {
         Assert.assertEquals(hueBlue, getHue(interpolator.getColor(4)), DELTA);
         Assert.assertEquals(hueCyan, getHue(interpolator.getColor(5)), DELTA);
     }
+
+    @Test
+    public void testLongest1() {
+        HsbInterpolator interpolator = new HsbInterpolator(red, blue, 3, HsbInterpolator.Direction.Longest);
+        Assert.assertEquals(hueRed, getHue(interpolator.getColor(0)), DELTA);
+        Assert.assertEquals(hueGreen, getHue(interpolator.getColor(1)), DELTA);
+        Assert.assertEquals(hueBlue, getHue(interpolator.getColor(2)), DELTA);
+    }
+    
+    @Test
+    public void testLongest2() {
+        HsbInterpolator interpolator = new HsbInterpolator(blue, red, 3, HsbInterpolator.Direction.Longest);
+        Assert.assertEquals(hueBlue, getHue(interpolator.getColor(0)), DELTA);
+        Assert.assertEquals(hueGreen, getHue(interpolator.getColor(1)), DELTA);
+        Assert.assertEquals(hueRed, getHue(interpolator.getColor(2)), DELTA);
+    }
+
+    @Test
+    public void testLongest3() {
+        HsbInterpolator interpolator = new HsbInterpolator(cyan, yellow, 3, HsbInterpolator.Direction.Longest);
+        Assert.assertEquals(hueCyan, getHue(interpolator.getColor(0)), DELTA);
+        Assert.assertEquals(hueMagenta, getHue(interpolator.getColor(1)), DELTA);
+        Assert.assertEquals(hueYellow, getHue(interpolator.getColor(2)), DELTA);
+    }
+    
+    @Test
+    public void testLongest4() {
+        HsbInterpolator interpolator = new HsbInterpolator(yellow, cyan, 3, HsbInterpolator.Direction.Longest);
+        Assert.assertEquals(hueYellow, getHue(interpolator.getColor(0)), DELTA);
+        Assert.assertEquals(hueMagenta, getHue(interpolator.getColor(1)), DELTA);
+        Assert.assertEquals(hueCyan, getHue(interpolator.getColor(2)), DELTA);
+    }
+
+    @Test
+    public void testShortest1() {
+        HsbInterpolator interpolator = new HsbInterpolator(red, blue, 3, HsbInterpolator.Direction.Shortest);
+        Assert.assertEquals(hueRed, getHue(interpolator.getColor(0)), DELTA);
+        Assert.assertEquals(hueMagenta, getHue(interpolator.getColor(1)), DELTA);
+        Assert.assertEquals(hueBlue, getHue(interpolator.getColor(2)), DELTA);
+    }
+    
+    @Test
+    public void testShortest2() {
+        HsbInterpolator interpolator = new HsbInterpolator(blue, red, 3, HsbInterpolator.Direction.Shortest);
+        Assert.assertEquals(hueBlue, getHue(interpolator.getColor(0)), DELTA);
+        Assert.assertEquals(hueMagenta, getHue(interpolator.getColor(1)), DELTA);
+        Assert.assertEquals(hueRed, getHue(interpolator.getColor(2)), DELTA);
+    }
+
+    @Test
+    public void testShortest3() {
+        HsbInterpolator interpolator = new HsbInterpolator(cyan, yellow, 3, HsbInterpolator.Direction.Shortest);
+        Assert.assertEquals(hueCyan, getHue(interpolator.getColor(0)), DELTA);
+        Assert.assertEquals(hueGreen, getHue(interpolator.getColor(1)), DELTA);
+        Assert.assertEquals(hueYellow, getHue(interpolator.getColor(2)), DELTA);
+    }
+    
+    @Test
+    public void testShortest4() {
+        HsbInterpolator interpolator = new HsbInterpolator(yellow, cyan, 3, HsbInterpolator.Direction.Shortest);
+        Assert.assertEquals(hueYellow, getHue(interpolator.getColor(0)), DELTA);
+        Assert.assertEquals(hueGreen, getHue(interpolator.getColor(1)), DELTA);
+        Assert.assertEquals(hueCyan, getHue(interpolator.getColor(2)), DELTA);
+    }
 }

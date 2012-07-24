@@ -3,7 +3,6 @@ package uk.co.danielrendall.fiftyshades.impl;
 import uk.co.danielrendall.fiftyshades.ColorSupplier;
 
 import java.awt.*;
-import java.awt.color.ColorSpace;
 
 /**
  * @author Daniel Rendall
@@ -77,7 +76,7 @@ public class HsbInterpolator implements ColorSupplier {
                     // fine, do nothing
                     break;
                 default:
-                    if (difference < 0.5) {
+                    if (difference > -0.5) {
                         switch (direction) {
                             case Longest:
                                 startHue -= 1.0f;
