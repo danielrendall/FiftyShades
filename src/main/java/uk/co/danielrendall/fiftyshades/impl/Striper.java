@@ -7,12 +7,10 @@ import java.awt.*;
 /**
  * @author Daniel Rendall
  */
-public class Striper implements ColorSupplier {
-
-    private final Color[] colors;
+public class Striper extends ColorSupplierDecorator {
 
     public Striper(ColorSupplier base, int stripeFactor) {
-        colors = new Color[base.getNumberOfColors()];
+        super(base.getNumberOfColors());
         int colorPos = 0;
         for (int i=0; i<stripeFactor; i++) {
             for (int j = i; j < base.getNumberOfColors(); j+= stripeFactor) {
@@ -20,21 +18,5 @@ public class Striper implements ColorSupplier {
                 colorPos++;
             }
         }
-    }
-
-    public int getNumberOfColors() {
-        return colors.length;
-    }
-
-    public Color getColor(int index) {
-        return colors[index];
-    }
-
-    public Color getStartColor() {
-        return getColor(0);
-    }
-
-    public Color getEndColor() {
-        return getColor(getNumberOfColors() - 1);
     }
 }
