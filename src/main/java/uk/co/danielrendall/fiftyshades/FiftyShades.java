@@ -1,5 +1,5 @@
 package uk.co.danielrendall.fiftyshades;
-import uk.co.danielrendall.fiftyshades.impl.SimpleShadeInterpolator;
+import uk.co.danielrendall.fiftyshades.impl.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,20 +13,27 @@ import java.io.IOException;
 public class FiftyShades {
 
     public static void main(String[] args) throws IOException {
+        Color startColor1 = Color.RED;
+        Color endColor1 = Color.CYAN;
+        Color startColor2 = Color.GREEN;
+        Color endColor2 = Color.MAGENTA;
+        Color startColor3 = Color.BLUE;
+        Color endColor3 = Color.YELLOW;
+        ColorSupplier cs = new Interleaver(new SimpleShadeInterpolator(startColor1, endColor1, 16),
+                new SimpleShadeInterpolator(startColor2, endColor2, 16),
+                new SimpleShadeInterpolator(startColor3, endColor3, 16));
+//        ColorSupplier cs = new Interleaver(new HsbInterpolator(startColor1, endColor1, 16, HsbInterpolator.Direction.Positive),
+//                new HsbInterpolator(startColor2, endColor2, 16, HsbInterpolator.Direction.Positive),
+//                new HsbInterpolator(startColor3, endColor3, 16, HsbInterpolator.Direction.Positive));
+
+        int width = cs.getNumberOfColors() * 12;
+
         BufferedImage image =
-          new BufferedImage(600, 450, BufferedImage.TYPE_INT_ARGB);
+          new BufferedImage(width, 450, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = image.createGraphics();
-        Color startColor = new Color(0.15f, 0.15f, 0.15f);
-        Color endColor = new Color(0.85f, 0.85f, 0.85f);
-        ColorSupplier cs = new SimpleShadeInterpolator(startColor, endColor, 50);
-        for (int i=0; i<25; i++) {
-            int xLeft = i*24;
+        for (int i=0; i<cs.getNumberOfColors(); i++) {
+            int xLeft = i*12;
             g2.setColor(cs.getColor(i));
-            g2.fillRect(xLeft, 0, 12, 450);
-        }
-        for (int i=0; i<25; i++) {
-            int xLeft = i*24 + 12;
-            g2.setColor(cs.getColor(i+25));
             g2.fillRect(xLeft, 0, 12, 450);
         }
         File outputFile = new File("fiftyshades.png");
